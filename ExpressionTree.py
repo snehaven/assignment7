@@ -56,7 +56,6 @@ class Tree (object):
         current_node = self.root
         stack_nodes = Stack()
         operators = ["+", "-", "*", "/", "//", "%", "**"]
-        print(tokens)
 
         for i in range(len(tokens)):
             if(tokens[i] == "("):
@@ -105,13 +104,23 @@ class Tree (object):
     # the tree's expression
     # returns a string of the expression written in preorder notation
     def pre_order (self, aNode):
-        pass
+        if not aNode:
+            strng = ""
+            return strng
+        else:
+            strng = str(aNode.data) + " " + self.pre_order(aNode.lChild)  + self.pre_order(aNode.rChild)
+            return strng
 
     # this function should generate the postorder notation of
     # the tree's expression
     # returns a string of the expression written in postorder notation
     def post_order (self, aNode):
-        pass
+        if not aNode:
+            strng = ""
+            return strng
+        else:
+            strng = self.post_order(aNode.lChild)  + self.post_order(aNode.rChild) + str(aNode.data) + " "
+            return strng
 
 # you should NOT need to touch main, everything should be handled for you
 def main():
